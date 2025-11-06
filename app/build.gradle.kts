@@ -2,11 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt") apply true
 }
 
 android {
     namespace = "com.example.noteyapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.noteyapp"
@@ -56,4 +57,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.0")
+    //room db
+    val room_version = "2.8.3"
+    implementation("androidx.room:room-runtime:$room_version")
+    //using coroutine with room
+    implementation("androidx.room:room-ktx:$room_version")
+
+    kapt ("androidx.room:room-compiler:$room_version")
 }
